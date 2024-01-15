@@ -4,7 +4,7 @@ FROM maven:3-eclipse-temurin-21-alpine AS build
 COPY pom.xml .
 COPY src src
 
-RUN mvn install -DskipTests && mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
+RUN mvn install -q -DskipTests && mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
 FROM eclipse-temurin:21-jre-alpine
 
